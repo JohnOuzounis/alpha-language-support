@@ -3,6 +3,10 @@
   "displayName": "Alpha Language Support",
   "description": "Alpha Language Support",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JohnOuzounis/alpha-language-support"
+  },
   "engines": {
     "vscode": "^1.78.0"
   },
