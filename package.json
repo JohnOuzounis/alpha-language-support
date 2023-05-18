@@ -1,0 +1,41 @@
+{
+  "name": "alpha-language-support",
+  "displayName": "Alpha Language Support",
+  "description": "Alpha Language Support",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.78.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "alpha",
+        "aliases": [
+          "alpha",
+          "alpha"
+        ],
+        "extensions": [
+          ".al"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "alpha",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "alpha",
+        "scopeName": "source.al",
+        "path": "./syntaxes/alpha.tmLanguage.json"
+      }
+    ]
+  }
+}

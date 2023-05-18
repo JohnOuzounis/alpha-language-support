@@ -1,0 +1,46 @@
+{
+    "if statement snippet": {
+        "scope": "alpha",
+        "prefix": "if",
+        "body": [
+            "if ( ${1:/* condition */} ) {\n\t${2:/* code */}\n}"
+        ],
+        "description": "if snippet"
+    },
+    "for loop snippet": {
+        "scope": "alpha",
+        "prefix": "for",
+        "body": [
+            "for (${1:i} = 0; $1 < ${2:length}; $1++) {\n\t${3:/* code */}\n}"
+        ],
+        "description": "for snippet"
+    },
+    "while loop snippet": {
+        "scope": "alpha",
+        "prefix": "while",
+        "body": [
+            "while (${1:/* condition */}) {\n\t${2:/* code */}\n}"
+        ],
+        "description": "while prefix"
+    },
+    "break statement snippet": {
+        "scope": "alpha",
+        "prefix": "break",
+        "body": "break;\n",
+        "description": "break snippet"
+    },
+    "continue statement snippet": {
+        "scope": "alpha",
+        "prefix": "continue",
+        "body": "continue;\n",
+        "description": "continue snippet"
+    },
+    "function declaration snippet": {
+        "scope": "alpha",
+        "prefix": "function",
+        "body": [
+            "function ${1:foo}(${2:/* formal args */}) {\n\t${3:/* code */}\n}"
+        ],
+        "description": "function snippet"
+    }
+}
