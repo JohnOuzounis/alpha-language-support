@@ -3,6 +3,9 @@
 	"name": "alpha",
 	"patterns": [
 		{
+			"include": "#function"
+		},
+		{
 			"include": "#constants"
 		},
 		{
@@ -25,11 +28,22 @@
 		}
 	],
 	"repository": {
+		"function": {
+			"name": "keyword",
+			"begin": "function",
+			"end": "\\(",
+			"patterns": [
+				{
+					"name": "entity.name.function",
+					"match": "([a-zA-Z_][a-zA-Z0-9_]*)"
+				}
+			]
+		},
 		"identifier": {
 			"patterns": [
 				{
 					"name": "variable",
-					"match": "([a-zA-Z][a-zA-Z0-9]*)"
+					"match": "([a-zA-Z_][a-zA-Z0-9_]*)"
 				}
 			]
 		},
