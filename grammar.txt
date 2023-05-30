@@ -1,0 +1,12 @@
+program: stmts
+        |
+        ;
+stmts: stmts stmt
+      | stmt
+      ;
+
+stmt: expr ';'
+    | ';'
+    ;
+expr: "hello"
+    ;
