@@ -15,7 +15,14 @@
     "Programming Languages",
     "Snippets"
   ],
+  "main": "./extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "extension.parseGrammar",
+        "title": "Parse Alpha Grammar"
+      }
+    ],
     "languages": [
       {
         "id": "alpha",
@@ -42,5 +49,14 @@
         "path": "./syntaxes/alpha.tmLanguage.json"
       }
     ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.5",
+    "@types/node": "^16.0.0"
   }
 }
