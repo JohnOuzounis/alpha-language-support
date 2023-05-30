@@ -9,7 +9,7 @@
         "resolveJsonModule": true
     },
     "include": [
-        "extension.js"
+        "scripts/extension.js"
     ],
     "exclude": [
         "node_modules"

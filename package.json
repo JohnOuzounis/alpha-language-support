@@ -15,7 +15,7 @@
     "Programming Languages",
     "Snippets"
   ],
-  "main": "./extension.js",
+  "main": "./scripts/extension.js",
   "contributes": {
     "commands": [
       {
