@@ -1,5 +1,10 @@
+const Lexer = require('./lexer.js');
+
 function parse(input) {
-    let tokens = input.split(/\s+/);
+    const lexer = new Lexer(input);
+    lexer.tokenize();
+
+    let tokens = lexer.getTokens();
     let currentIndex = 0;
     let message = 'Parsing Complete';
 
