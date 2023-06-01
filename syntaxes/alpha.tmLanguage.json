@@ -110,6 +110,11 @@
 				}
 			},
 			"end": "\\*/",
+			"patterns": [
+				{
+					"include": "#comment-block"
+				}
+			],
 			"name": "comment.block"
 		},
 		"operators": {
