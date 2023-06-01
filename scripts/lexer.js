@@ -1,9 +1,9 @@
 const { assert } = require("console");
-const fs = require("fs");
 
 class Lexer {
     constructor(text) {
         this.error = false;
+        this.message = '';
         this.text = text;
         this.tokens = [];
         this.tokenActions = {};
@@ -72,9 +72,9 @@ class Lexer {
 
         this.tokenActions['NON_TOKEN'] = (value, line) => {
             if (value === '"')
-                console.error(`Unclosed string in (Line ${line})`);
+                this.message += `Syntax Error (Line ${line}): Unclosed string\n`;
             else
-                console.error(`Unrecognized char ${value} in (Line ${line})`);
+                this.message += `Syntax Error (Line ${line}): Unrecognized char ${value}\n`;
             this.error = true;
             return null;
         };
@@ -137,7 +137,7 @@ class Lexer {
             else if (tokenType === 'BLOCKEND') blocks--;
 
             if (blocks < 0) {
-                console.error(`Closing comment block without opening first (Line ${lineIndex})`);
+                this.message += `Syntax Error (Line ${lineIndex}): Closing comment block without opening first\n`;
                 this.error = true;
                 break;
             }
@@ -164,6 +164,10 @@ class Lexer {
             lineIndex += newLineCount;
             if (tokenType === 'NEWLINE')
                 lineIndex++;
+        }
+        if (blocks > 0) {
+            this.message += `Syntax Error (Line ${lineIndex}): Opening comment block without closing\n`;
+            this.error = true;
         }
     }
 
