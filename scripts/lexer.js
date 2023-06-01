@@ -166,7 +166,7 @@ class Lexer {
                 lineIndex++;
         }
         if (blocks > 0) {
-            this.message += `Syntax Error (Line ${lineIndex}): Opening comment block without closing\n`;
+            this.message += `Syntax Error (Line ${lineIndex}): Opening comment block not closed\n`;
             this.error = true;
         }
     }
