@@ -16,7 +16,8 @@ function activate(context) {
             const result = parse(text);
 
             // Show the parsing result
-            vscode.window.showInformationMessage(`Parsing result: ${result}`);
+            if (result)
+                vscode.window.showInformationMessage(`${result}`);
         }
     });
 
@@ -29,7 +30,8 @@ function activate(context) {
             const result = parse(text);
 
             // Show the parsing result
-            vscode.window.showInformationMessage(`${result}`);
+            if (result)
+                vscode.window.showInformationMessage(`${result}`);
         }
     });
     context.subscriptions.push(disposable);
