@@ -15,6 +15,9 @@
     "Programming Languages",
     "Snippets"
   ],
+  "activationEvents": [
+    "onLanguage:al"
+  ],
   "main": "./scripts/extension.js",
   "contributes": {
     "commands": [
