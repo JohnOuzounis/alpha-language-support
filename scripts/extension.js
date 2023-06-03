@@ -17,7 +17,7 @@ function activate(context) {
 
             // Show the parsing result
             if (result)
-                vscode.window.showInformationMessage(`${result}`);
+                vscode.window.showErrorMessage(`${result}`);
         }
     });
 
@@ -31,7 +31,7 @@ function activate(context) {
 
             // Show the parsing result
             if (result)
-                vscode.window.showInformationMessage(`${result}`);
+                vscode.window.showErrorMessage(`${result}`);
         }
     });
     context.subscriptions.push(disposable);
