@@ -8,7 +8,7 @@ const lexer = new Lexer();
 var grammar = {
     Lexer: lexer,
     ParserRules: [
-    {"name": "start", "symbols": ["program", "empty"]},
+    {"name": "start", "symbols": ["program"]},
     {"name": "program", "symbols": ["stmts"]},
     {"name": "program", "symbols": ["empty"]},
     {"name": "stmts", "symbols": ["stmts", "stmt"]},

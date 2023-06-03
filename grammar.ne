@@ -5,7 +5,7 @@ const lexer = new Lexer();
 
 @lexer lexer
 
-start -> program empty
+start -> program
 
 program -> stmts
         | empty
