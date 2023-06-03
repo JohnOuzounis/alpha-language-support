@@ -1,16 +1,33 @@
 const { assert } = require("console");
 
 class Lexer {
-    constructor(text) {
+    constructor() {
         this.error = false;
         this.message = '';
-        this.text = text;
         this.tokens = [];
         this.tokenActions = {};
+        this.currentToken = 0;
 
         let handler = function (value) { return value; };
         this.tokenActions['NUMBER'] = handler;
         this.tokenActions['IDENTIFIER'] = handler;
+
+        this.tokenActions['IF'] = handler;
+        this.tokenActions['ELSE'] = handler;
+        this.tokenActions['WHILE'] = handler;
+        this.tokenActions['FOR'] = handler;
+        this.tokenActions['RETURN'] = handler;
+        this.tokenActions['FUNCTION'] = handler;
+        this.tokenActions['LOCAL'] = handler;
+        this.tokenActions['BREAK'] = handler;
+        this.tokenActions['CONTINUE'] = handler;
+        this.tokenActions['AND'] = handler;
+        this.tokenActions['OR'] = handler;
+        this.tokenActions['NOT'] = handler;
+        this.tokenActions['TRUE'] = handler;
+        this.tokenActions['FALSE'] = handler;
+        this.tokenActions['NIL'] = handler;
+
         this.tokenActions['ASSIGN'] = handler;
         this.tokenActions['PLUS'] = handler;
         this.tokenActions['MINUS'] = handler;
@@ -25,6 +42,7 @@ class Lexer {
         this.tokenActions['LESS'] = handler;
         this.tokenActions['GREATEREQUAL'] = handler;
         this.tokenActions['LESSEQUAL'] = handler;
+
         this.tokenActions['OPENCURLY'] = handler;
         this.tokenActions['CLOSECURLY'] = handler;
         this.tokenActions['OPENBRACKET'] = handler;
@@ -80,8 +98,9 @@ class Lexer {
         };
     }
 
-    tokenize() {
+    tokenize(text) {
         let lineIndex = 1;
+        this.resetState();
 
         const patterns = [
             { type: 'BLOCKSTART', regex: /\/\*[^(\/\*)]*/ },
@@ -126,7 +145,7 @@ class Lexer {
 
         let blocks = 0;
         let match;
-        while ((match = tokenRegex.exec(this.text))) {
+        while ((match = tokenRegex.exec(text))) {
             const matchedText = match[0];
             let tokenType = Object.keys(match.groups).find(groupName => match.groups[groupName] !== undefined);
             const tokenAction = this.tokenActions[tokenType];
@@ -152,7 +171,9 @@ class Lexer {
 
             if (modifiedText) {
                 tokenType = (function (value, type) {
-                    const keywords = ["if", "else"];
+                    const keywords = ["if", "else", "while", "for",
+                        "return", "function", "local", "break", "continue",
+                        "and", "or", "not", "true", "false", "nil"];
                     if (keywords.includes(value))
                         return value.toUpperCase();
                     return type;
@@ -171,8 +192,76 @@ class Lexer {
         }
     }
 
+    resetState() {
+        this.error = false;
+        this.message = '';
+        this.tokens = [];
+        this.tokenActions = {};
+        this.currentToken = 0;
+    }
+
     getTokens() {
         return this.tokens;
     }
+
+    /**
+     * returns a token object, which could have fields for line number, etc. 
+     * Importantly, a token object must have a value attribute.
+     */
+    next() {
+        return this.tokens[this.currentToken++];
+    }
+
+    /**
+     * returns an info object that describes the current state of the lexer. 
+     * nearley places no restrictions on this object.
+     */
+    save() {
+        let savedState = {
+            currentToken: 0, // The current index in the buffer
+            error: false, // The error state of the lexer
+            message: '' // The error state of the lexer
+        };
+        savedState.error = this.error;
+        savedState.message = this.message;
+        savedState.currentToken = this.currentToken;
+
+        return savedState;
+    }
+
+    /**
+     * sets the internal buffer of the lexer to chunk, 
+     * and restores its state to a state returned by save().
+     * @param {*} chunk 
+     * @param {*} info 
+     */
+    reset(chunk, info) {
+        if (typeof info !== undefined) return;
+        else {
+            this.error = info.error;
+            this.message = info.message;
+            this.currentToken = info.currentToken;
+        }
+    }
+
+    /**
+     * returns a string with an error message describing a parse error at that token 
+     * (for example, the string might contain the line and column where the error was found).
+     * @param {*} token 
+     * @returns 
+     */
+    formatError(token) {
+        return `Syntax Error (Line ${token.line}): Unexpected ${token.type} token ${token.value}\n`;
+    }
+
+    /**
+     * returns true if the lexer can emit tokens with that name. 
+     * This is used to resolve %-specifiers in compiled nearley grammars.
+     * @param {*} name 
+     */
+    has(name) {
+        return Object.keys(this.tokenActions).includes(name);
+    }
+
 }
 module.exports = Lexer;
