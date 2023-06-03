@@ -14,7 +14,7 @@ function parse(input) {
     try {
         parser.feed(grammar.Lexer.getTokens());
         if (parser.results.length == 0)
-            throw new Error('Syntax Error: Unexpected end of input, reached end of file\n');
+            throw new Error('Syntax Error: Unexpected end of file\n');
     } catch (error) {
         message += error.message.split('\n')[0];
     }
