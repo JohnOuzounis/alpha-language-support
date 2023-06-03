@@ -196,7 +196,6 @@ class Lexer {
         this.error = false;
         this.message = '';
         this.tokens = [];
-        this.tokenActions = {};
         this.currentToken = 0;
     }
 
