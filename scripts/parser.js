@@ -10,11 +10,13 @@ function parse(input) {
         return message;
     }
 
-    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
     try {
+        const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
         parser.feed(grammar.Lexer.getTokens());
-        if (parser.results.length == 0)
-            throw new Error('Syntax Error: Unexpected end of file\n');
+        if (parser.results.length == 0) {
+            const line = grammar.Lexer.tokens[grammar.Lexer.tokens.length - 1].line;
+            throw new Error(`Syntax Error (Line ${line}): Unexpected end of file\n`);
+        }
     } catch (error) {
         message += error.message.split('\n')[0];
     }
