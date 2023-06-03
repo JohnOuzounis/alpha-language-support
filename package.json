@@ -56,7 +56,10 @@
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "typescript": "^3.9.5",
-    "@types/node": "^16.0.0"
+    "@types/node": "^16.0.0",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "nearley": "^2.20.1"
   }
 }
