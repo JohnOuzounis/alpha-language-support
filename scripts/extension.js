@@ -6,23 +6,27 @@ const child_process = require('child_process');
 function activate(context) {
     const outputChannel = vscode.window.createOutputChannel('Alpha');
 
-    let disposableParseCommand = vscode.commands.registerCommand('extension.parseGrammar', () => {
+    function exec(exe, args) {
+        child_process.execFile(`${exe}`, args,
+            (error, stdout, stderr) => {
+                if (error) { outputChannel.appendLine(stderr); throw error }
+                if (stderr) { outputChannel.appendLine(stderr); return; }
+                if (stdout) { outputChannel.appendLine(stdout); return; }
+            });
+    }
+
+    function parse() {
         const activeEditor = vscode.window.activeTextEditor;
-        if (activeEditor) {
+        if (activeEditor && activeEditor.document.languageId === 'alpha') {
             const activeFilePath = activeEditor.document.uri.fsPath;
             const binFolderUri = vscode.Uri.joinPath(context.extensionUri, 'bin');
             const parserPath = vscode.Uri.joinPath(binFolderUri, 'parser.exe').fsPath;
 
-            child_process.execFile(`${parserPath}`, [`${activeFilePath}`],
-                (error, stdout, stderr) => {
-                    if (error) { outputChannel.appendLine(stderr); throw error }
-                    if (stderr) { outputChannel.appendLine(stderr); return; }
-                    if (stdout) { outputChannel.appendLine(stdout); return; }
-                });
+            exec(parserPath, [`${activeFilePath}`]);
         }
-    });
+    }
 
-    let disposableRunCommand = vscode.commands.registerCommand('extension.compileAndRunVM', () => {
+    function compileAndRunVM() {
         const activeEditor = vscode.window.activeTextEditor;
         if (activeEditor) {
             const activeFilePath = activeEditor.document.uri.fsPath;
@@ -33,38 +37,23 @@ function activate(context) {
             const compilerPath = vscode.Uri.joinPath(binFolderUri, 'alphac.exe').fsPath;
             const vmPath = vscode.Uri.joinPath(binFolderUri, 'alpha.exe').fsPath;
 
-            child_process.execFile(`${compilerPath}`, [`${activeFilePath}`],
-                (error, stdout, stderr) => {
-                    if (error) { outputChannel.appendLine(stderr); throw error }
-                    if (stderr) { outputChannel.appendLine(stderr); return; }
-                    if (stdout) { outputChannel.appendLine(stdout); return; }
-                });
-
-            child_process.execFile(`${vmPath}`, [`${activeFileName}.abc`],
-                (error, stdout, stderr) => {
-                    if (error) { outputChannel.appendLine(stderr); throw error }
-                    if (stderr) { outputChannel.appendLine(stderr); return; }
-                    if (stdout) { outputChannel.appendLine(stdout); return; }
-                });
+            exec(compilerPath, [`${activeFilePath}`]);
+            exec(vmPath, [`${activeFileName}.abc`]);
         }
+    }
+
+    let disposableParseCommand = vscode.commands.registerCommand('extension.parseGrammar', () => {
+        parse();
+    });
+
+    let disposableRunCommand = vscode.commands.registerCommand('extension.compileAndRunVM', () => {
+        compileAndRunVM();
     });
 
     // Trigger parsing when a file is saved
     vscode.workspace.onDidSaveTextDocument((document) => {
         if (document.languageId === 'alpha') {
-            const activeEditor = vscode.window.activeTextEditor;
-            if (activeEditor) {
-                const activeFilePath = activeEditor.document.uri.fsPath;
-                const binFolderUri = vscode.Uri.joinPath(context.extensionUri, 'bin');
-                const parserPath = vscode.Uri.joinPath(binFolderUri, 'parser.exe').fsPath;
-
-                child_process.execFile(`${parserPath}`, [`${activeFilePath}`],
-                    (error, stdout, stderr) => {
-                        if (error) { outputChannel.appendLine(stderr); throw error }
-                        if (stderr) { outputChannel.appendLine(stderr); return; }
-                        if (stdout) { outputChannel.appendLine(stdout); return; }
-                    });
-            }
+            parse();
         }
     });
     context.subscriptions.push(disposableParseCommand, disposableRunCommand);
