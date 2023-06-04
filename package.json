@@ -23,7 +23,11 @@
     "commands": [
       {
         "command": "extension.parseGrammar",
-        "title": "Parse Alpha Grammar"
+        "title": "Alpha Parse Grammar"
+      },
+      {
+        "command": "extension.compileAndRunVM",
+        "title": "Alpha Compile and Run VM"
       }
     ],
     "languages": [
@@ -64,5 +68,9 @@
   },
   "dependencies": {
     "nearley": "^2.20.1"
-  }
+  },
+  "files": [
+    "bin/alpha.exe",
+    "bin/alphac.exe"
+  ]
 }
