@@ -62,15 +62,9 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./"
   },
-  "devDependencies": {
-    "@types/node": "^16.0.0",
-    "typescript": "^3.9.5"
-  },
-  "dependencies": {
-    "nearley": "^2.20.1"
-  },
   "files": [
     "bin/alpha.exe",
-    "bin/alphac.exe"
+    "bin/alphac.exe",
+    "bin/parser.exe"
   ]
 }
