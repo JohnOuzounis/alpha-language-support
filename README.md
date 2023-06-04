@@ -1,4 +1,4 @@
-# alpha-language-support README
+# alpha-language-support
     Alpha Language Support was created to help write scripts using the alpha language.
     Alpha scripts must have the .al extention
 
@@ -8,17 +8,23 @@
         -syntax analysis
         -compile and run
 
-Syntax Analysis
+## Syntax Analysis
 
-    The syntax analyser is activated upon file save,
-    the file is parsed and a pop-up message is displayed
-    in case of syntax error, error messages can also be examined
-    in the Output Alpha panel. The messages are not very accurate
-    but they provide a line number to help with debugging.
+    The syntax analyser is activated upon file save and
+    the file is parsed. Error messages can be examined
+    in the Output Alpha panel (see Compile and Run VM on how to open the Output panel).
+    The messages are not very accurate but they provide a line number to help with debugging.
 ![Syntax Error Example](images/syntax-error.png)
+    
+    The parser can also be activated using the Parse Grammar command.
+    To use the command, 
+    1) open the command palette with Ctrl+Shift+P
+    2) search Alpha Parse Grammar
+![Compile Example](images/palette2.png)
 
+    The parsing results will be displayed in the Output panel
 
-Compile and Run VM
+## Compile and Run VM
 
     To compile and run an alpha script, 
     1) open the command palette with Ctrl+Shift+P
@@ -36,9 +42,8 @@ Compile and Run VM
 ![Compile Example](images/output.png)
 
 
-Syntax Highlighting
+## Syntax Highlighting
+    
+    An example of how every token looks like using
+    the JohnOuz-Light++ theme
 ![Syntax Highlighting](images/syntax-highlight.png)
-
-## Recommendation
-    It is recommended that you use JohnOuz-Light++ theme
-    for the best experience when writing alpha scripts 
