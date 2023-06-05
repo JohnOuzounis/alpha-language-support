@@ -37,7 +37,7 @@
     Error messages from the compiler will be displayed
     in the Output panel (see View Parse Output on how to open the Output panel).
 
-    The vm runs on a terminal and the output is displayed there.
+    The vm runs on a terminal (tested on powershell) and the output is displayed there.
 ![Compile Example](images/output.png)
 
 
