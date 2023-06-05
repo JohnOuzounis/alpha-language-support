@@ -35,11 +35,6 @@ class AlphaCompletionItemProvider {
         variableItem.insertText = 'typeof';
         completionItems.push(variableItem);
 
-        var variableItem = new vscode.CompletionItem('println', vscode.CompletionItemKind.Function);
-        variableItem.detail = 'Library function println';
-        variableItem.insertText = 'println';
-        completionItems.push(variableItem);
-
         var variableItem = new vscode.CompletionItem('totalarguments', vscode.CompletionItemKind.Function);
         variableItem.detail = 'Library function totalarguments';
         variableItem.insertText = 'totalarguments';
