@@ -12,7 +12,7 @@
 
     The syntax analyser is activated upon file save and
     the file is parsed. Error messages can be examined
-    in the Output Alpha panel (see Compile and Run VM on how to open the Output panel).
+    in the Output Alpha panel (see View Parse Output on how to open the Output panel).
     The messages are not very accurate but they provide a line number to help with debugging.
 ![Syntax Error Example](images/syntax-error.png)
     
@@ -33,14 +33,19 @@
 
     This will compile the active alpha file
     and produce a .abc file with the same name
-    as the active file. To view the output of the script
-    go to View -> Output (or Ctrl+Shift+U) and select the Alpha panel
-![Compile Example](images/panel.png)
+    as the active file. 
+    Error messages from the compiler will be displayed
+    in the Output panel (see View Parse Output on how to open the Output panel).
 
-    Error messages from the compiler and the vm will also display
-    in this panel
+    The vm runs on a terminal and the output is displayed there.
 ![Compile Example](images/output.png)
 
+
+## View Parse Output
+
+    To view the output of the parser
+    go to View -> Output (or Ctrl+Shift+U) and select the Alpha panel
+![Compile Example](images/panel.png)
 
 ## Syntax Highlighting
     
