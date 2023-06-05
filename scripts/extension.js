@@ -2,6 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const child_process = require('child_process');
+const Completion = require('./completion.js');
 
 function activate(context) {
     const outputChannel = vscode.window.createOutputChannel('Alpha');
@@ -50,13 +51,24 @@ function activate(context) {
         compileAndRunVM();
     });
 
+    let disposableCompletion = vscode.languages.registerCompletionItemProvider(
+        'alpha',
+        new Completion(),
+        '.'
+    );
+
     // Trigger parsing when a file is saved
     vscode.workspace.onDidSaveTextDocument((document) => {
         if (document.languageId === 'alpha') {
             parse();
         }
     });
-    context.subscriptions.push(disposableParseCommand, disposableRunCommand);
+
+    context.subscriptions.push(
+        disposableParseCommand,
+        disposableRunCommand,
+        disposableCompletion
+    );
 }
 exports.activate = activate;
 
