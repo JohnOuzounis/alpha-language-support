@@ -20,6 +20,14 @@
   ],
   "main": "./scripts/extension.js",
   "contributes": {
+    "capabilities": {
+      "completionProvider": {
+        "resolveProvider": "true",
+        "triggerCharacters": [
+          "."
+        ]
+      }
+    },
     "commands": [
       {
         "command": "extension.parseGrammar",
@@ -66,5 +74,8 @@
     "bin/alpha.exe",
     "bin/alphac.exe",
     "bin/parser.exe"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  }
 }
