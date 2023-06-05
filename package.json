@@ -26,7 +26,8 @@
         "triggerCharacters": [
           "."
         ]
-      }
+      },
+      "hoverProvider": true
     },
     "commands": [
       {

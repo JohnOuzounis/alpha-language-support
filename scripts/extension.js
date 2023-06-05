@@ -3,6 +3,7 @@ const vscode = require('vscode');
 const path = require('path');
 const child_process = require('child_process');
 const Completion = require('./completion.js');
+const AlphaHover = require('./hovers.js');
 
 function activate(context) {
     const outputChannel = vscode.window.createOutputChannel('Alpha');
@@ -57,6 +58,11 @@ function activate(context) {
         '.'
     );
 
+    let disposableHover = vscode.languages.registerHoverProvider(
+        'alpha',
+        new AlphaHover()
+    );
+
     // Trigger parsing when a file is saved
     vscode.workspace.onDidSaveTextDocument((document) => {
         if (document.languageId === 'alpha') {
@@ -67,7 +73,8 @@ function activate(context) {
     context.subscriptions.push(
         disposableParseCommand,
         disposableRunCommand,
-        disposableCompletion
+        disposableCompletion,
+        disposableHover
     );
 }
 exports.activate = activate;
