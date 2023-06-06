@@ -5,7 +5,19 @@
         "body": [
             "if ( ${1:/* condition */} ) {\n\t${2:/* code */}\n}"
         ],
-        "description": "if snippet"
+        "description": "if statement snippet"
+    },
+    "if keyword snippet": {
+        "scope": "alpha",
+        "prefix": "if",
+        "body": "if",
+        "description": "if keyword snippet"
+    },
+    "else keyword snippet": {
+        "scope": "alpha",
+        "prefix": "else",
+        "body": "else",
+        "description": "else keyword snippet"
     },
     "for loop snippet": {
         "scope": "alpha",
@@ -13,7 +25,13 @@
         "body": [
             "for (${1:i} = 0; $1 < ${2:length}; $1++) {\n\t${3:/* code */}\n}"
         ],
-        "description": "for snippet"
+        "description": "for loop snippet"
+    },
+    "for keyword snippet": {
+        "scope": "alpha",
+        "prefix": "for",
+        "body": "for",
+        "description": "for keyword snippet"
     },
     "while loop snippet": {
         "scope": "alpha",
@@ -21,7 +39,27 @@
         "body": [
             "while (${1:/* condition */}) {\n\t${2:/* code */}\n}"
         ],
-        "description": "while prefix"
+        "description": "while loop snippet"
+    },
+    "while keyword snippet": {
+        "scope": "alpha",
+        "prefix": "while",
+        "body": "while",
+        "description": "while keyword snippet"
+    },
+    "return statement snippet": {
+        "scope": "alpha",
+        "prefix": "return",
+        "body": [
+            "return ${1:/* expression */};"
+        ],
+        "description": "return statement snippet"
+    },
+    "return keyword snippet": {
+        "scope": "alpha",
+        "prefix": "return",
+        "body": "return",
+        "description": "return keyword snippet"
     },
     "break statement snippet": {
         "scope": "alpha",
@@ -41,6 +79,48 @@
         "body": [
             "function ${1:foo}(${2:/* formal args */}) {\n\t${3:/* code */}\n}"
         ],
-        "description": "function snippet"
+        "description": "function declaration snippet"
+    },
+    "local keyword snippet": {
+        "scope": "alpha",
+        "prefix": "local",
+        "body": "local",
+        "description": "local keyword snippet"
+    },
+    "and keyword snippet": {
+        "scope": "alpha",
+        "prefix": "and",
+        "body": "and",
+        "description": "and keyword snippet"
+    },
+    "or keyword snippet": {
+        "scope": "alpha",
+        "prefix": "or",
+        "body": "or",
+        "description": "or keyword snippet"
+    },
+    "not keyword snippet": {
+        "scope": "alpha",
+        "prefix": "not",
+        "body": "not",
+        "description": "not keyword snippet"
+    },
+    "true keyword snippet": {
+        "scope": "alpha",
+        "prefix": "true",
+        "body": "true",
+        "description": "true keyword snippet"
+    },
+    "false keyword snippet": {
+        "scope": "alpha",
+        "prefix": "false",
+        "body": "false",
+        "description": "false keyword snippet"
+    },
+    "nil keyword snippet": {
+        "scope": "alpha",
+        "prefix": "nil",
+        "body": "nil",
+        "description": "nil keyword snippet"
     }
 }
