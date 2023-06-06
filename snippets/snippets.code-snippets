@@ -81,6 +81,12 @@
         ],
         "description": "function declaration snippet"
     },
+    "function keyword snippet": {
+        "scope": "alpha",
+        "prefix": "function",
+        "body": "function",
+        "description": "function keyword snippet"
+    },
     "local keyword snippet": {
         "scope": "alpha",
         "prefix": "local",
