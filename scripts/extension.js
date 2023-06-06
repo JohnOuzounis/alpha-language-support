@@ -8,6 +8,42 @@ const AlphaHover = require('./hovers.js');
 function activate(context) {
     const outputChannel = vscode.window.createOutputChannel('Alpha');
 
+    function getBinPath() {
+        if (process.platform === 'win32')
+            return 'bin\\windows';
+        else if (process.platform === 'linux')
+            return 'bin/linux';
+        else
+            throw Error('Unsupported platform');
+    }
+
+    function getParserPath() {
+        if (process.platform === 'win32')
+            return 'parser.exe';
+        else if (process.platform === 'linux')
+            return 'parser';
+        else
+            throw Error('Unsupported platform');
+    }
+
+    function getCompilerPath() {
+        if (process.platform === 'win32')
+            return 'alphac.exe';
+        else if (process.platform === 'linux')
+            return 'alphac';
+        else
+            throw Error('Unsupported platform');
+    }
+
+    function getVmPath() {
+        if (process.platform === 'win32')
+            return 'alpha.exe';
+        else if (process.platform === 'linux')
+            return 'alpha';
+        else
+            throw Error('Unsupported platform');
+    }
+
     function exec(exe, args, run) {
         if (run) {
             const terminal = vscode.window.activeTerminal || vscode.window.createTerminal();
@@ -28,8 +64,8 @@ function activate(context) {
         const activeEditor = vscode.window.activeTextEditor;
         if (activeEditor && activeEditor.document.languageId === 'alpha') {
             const activeFilePath = activeEditor.document.uri.fsPath;
-            const binFolderUri = vscode.Uri.joinPath(context.extensionUri, 'bin');
-            const parserPath = vscode.Uri.joinPath(binFolderUri, 'parser.exe').fsPath;
+            const binFolderUri = vscode.Uri.joinPath(context.extensionUri, getBinPath());
+            const parserPath = vscode.Uri.joinPath(binFolderUri, getParserPath()).fsPath;
 
             exec(parserPath, [`${activeFilePath}`], false);
         }
@@ -42,9 +78,9 @@ function activate(context) {
             const activeFileName = path.dirname(activeFilePath) + '\\' +
                 path.basename(activeFilePath, path.extname(activeFilePath));
 
-            const binFolderUri = vscode.Uri.joinPath(context.extensionUri, 'bin');
-            const compilerPath = vscode.Uri.joinPath(binFolderUri, 'alphac.exe').fsPath;
-            const vmPath = vscode.Uri.joinPath(binFolderUri, 'alpha.exe').fsPath;
+            const binFolderUri = vscode.Uri.joinPath(context.extensionUri, getBinPath());
+            const compilerPath = vscode.Uri.joinPath(binFolderUri, getCompilerPath()).fsPath;
+            const vmPath = vscode.Uri.joinPath(binFolderUri, getVmPath()).fsPath;
 
             exec(compilerPath, [`${activeFilePath}`], false);
             exec(vmPath, [`${activeFileName}.abc`], true);
