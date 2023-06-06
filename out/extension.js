@@ -9,6 +9,7 @@ function activate(context) {
     function exec(exe, args, run) {
         if (run) {
             const terminal = vscode.window.activeTerminal || vscode.window.createTerminal();
+            terminal.show();
             terminal.sendText(`& '${exe}' '${args}'`);
         }
         else {
