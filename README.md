@@ -47,8 +47,3 @@
     go to View -> Output (or Ctrl+Shift+U) and select the Alpha panel
 ![Compile Example](images/panel.png)
 
-## Syntax Highlighting
-    
-    An example of how every token looks like using
-    the JohnOuz-Light++ theme
-![Syntax Highlighting](images/syntax-highlight.png)
