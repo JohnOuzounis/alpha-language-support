@@ -11,7 +11,13 @@ class AlphaCompletionItemProvider {
             return item;
         }
         (() => {
-            const patterns = [{ type: 'IDENTIFIER', regex: /[a-zA-Z_]([a-zA-Z_]*|([0-9]+)*)*/ }];
+            const patterns = [
+                { type: 'IDENTIFIER', regex: /[a-zA-Z_]([a-zA-Z_]*|([0-9]+)*)*/ },
+                { type: 'COMMENTSTART', regex: /\/\*/ },
+                { type: 'COMMENTEND', regex: /\*\// },
+                { type: 'COMMENT', regex: /\/\/.*/ },
+                { type: 'LITERAL', regex: /"([^\\\"]|\\.|\n)*"/ }
+            ];
             const combinedPatterns = patterns.map(({ type, regex }) => `(?<${type}>${regex.source})`).join('|');
             const tokenRegex = new RegExp(combinedPatterns, 'g');
             function isKeyword(identifier) {
@@ -22,9 +28,17 @@ class AlphaCompletionItemProvider {
                 ];
                 return (keywords.includes(identifier));
             }
+            let commented = 0;
             let match;
             while ((match = tokenRegex.exec(document.getText()))) {
                 const identifier = match[0];
+                const tokenType = Object.keys(match.groups).find(groupName => match.groups[groupName] !== undefined);
+                if (tokenType === 'COMMENTSTART')
+                    commented++;
+                if (tokenType === 'COMMENTEND')
+                    commented--;
+                if (!(tokenType === 'IDENTIFIER') || commented > 0)
+                    continue;
                 const existingItem = completionItems.find(item => item.label === identifier);
                 if (!existingItem && !isKeyword(identifier)) {
                     completionItems.push(makeItem(identifier, vscode.CompletionItemKind.Variable, false));
