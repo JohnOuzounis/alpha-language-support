@@ -33,6 +33,15 @@ class AlphaCompletionItemProvider {
                 return (keywords.includes(identifier));
             }
 
+            function isLibFunc(identifier) {
+                const funcs = [
+                    "print", "println", "sin", "cos", "sqrt", "typeof", "argument", "strtonum", "input",
+                    "totalarguments", "objecttotalmembers", "objectcopy", "objectmemberkeys"
+                ];
+
+                return (funcs.includes(identifier));
+            }
+
             let commented = 0;
             let match;
             while ((match = tokenRegex.exec(document.getText()))) {
@@ -43,7 +52,7 @@ class AlphaCompletionItemProvider {
                 if (!(tokenType === 'IDENTIFIER') || commented > 0) continue;
 
                 const existingItem = completionItems.find(item => item.label === identifier);
-                if (!existingItem && !isKeyword(identifier)) {
+                if (!existingItem && !isKeyword(identifier) && !isLibFunc(identifier)) {
                     completionItems.push(makeItem(identifier, vscode.CompletionItemKind.Variable, false));
                 }
             }
