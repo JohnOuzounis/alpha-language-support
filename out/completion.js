@@ -65,6 +65,8 @@ class AlphaCompletionItemProvider {
         completionItems.push(makeItem('objecttotalmembers', vscode.CompletionItemKind.Function, true));
         completionItems.push(makeItem('objectcopy', vscode.CompletionItemKind.Function, true));
         completionItems.push(makeItem('objectmembrekeys', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('objectcontains', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('tostring', vscode.CompletionItemKind.Function, true));
         return Promise.resolve(completionItems);
     }
 }

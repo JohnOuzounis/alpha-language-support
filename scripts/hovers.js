@@ -9,14 +9,14 @@ class AlphaHoverProvider {
         let message = new MarkdownString();
         if (word === 'println') {
             message.appendCodeblock(`function ${word}(...) {\n\t/* code */\n}\n`, 'alpha');
-            message.appendMarkdown('This function takes any number of arguments and prints them.\n', 'alpha');
+            message.appendMarkdown('This function takes any number of arguments of any type and prints them.\n', 'alpha');
             message.appendMarkdown(`A newline is printed at the end.`, 'alpha');
 
             hover = new Hover(message);
         }
         else if (word === 'print') {
             message.appendCodeblock(`function ${word}(...) {\n\t/* code */\n}\n`, 'alpha');
-            message.appendMarkdown('This function takes any number of arguments and prints them.\n', 'alpha');
+            message.appendMarkdown('This function takes any number of arguments of any type and prints them.\n', 'alpha');
 
             hover = new Hover(message);
         }
@@ -67,7 +67,7 @@ class AlphaHoverProvider {
         else if (word === 'strtonum') {
             message.appendCodeblock(`function ${word}(param: string) {\n\t/* code */\n}\n`, 'alpha');
             message.appendMarkdown('This function takes an argument of type "string" and\n', 'alpha');
-            message.appendMarkdown('returns a convertion of the string to a number\n', 'alpha');
+            message.appendMarkdown('returns a string represention of the number\n', 'alpha');
 
             hover = new Hover(message);
         }
@@ -96,6 +96,20 @@ class AlphaHoverProvider {
             message.appendCodeblock(`function ${word}(obj: object) {\n\t/* code */\n}\n`, 'alpha');
             message.appendMarkdown('This function takes an argument of type "object" and\n', 'alpha');
             message.appendMarkdown('returns an object containing the keys of the object parameter.\n', 'alpha');
+
+            hover = new Hover(message);
+        }
+        else if (word === 'objectcontains') {
+            message.appendCodeblock(`function ${word}(obj: object, val: any) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of type "object" and an argument of any type and\n', 'alpha');
+            message.appendMarkdown('returns true if the object contains the specified value, otherwise it returns false.\n', 'alpha');
+
+            hover = new Hover(message);
+        }
+        else if (word === 'tostring') {
+            message.appendCodeblock(`function ${word}(param: any) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of any type and\n', 'alpha');
+            message.appendMarkdown('returns a string representation of the parameter.\n', 'alpha');
 
             hover = new Hover(message);
         }
