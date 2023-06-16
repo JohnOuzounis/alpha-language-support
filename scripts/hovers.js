@@ -113,6 +113,48 @@ class AlphaHoverProvider {
 
             hover = new Hover(message);
         }
+        else if (word === 'abs') {
+            message.appendCodeblock(`function ${word}(x: number) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of type number and\n', 'alpha');
+            message.appendMarkdown('returns the absolute value of x.\n', 'alpha');
+
+            hover = new Hover(message);
+        }
+        else if (word === 'int') {
+            message.appendCodeblock(`function ${word}(x: number) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of type number and\n', 'alpha');
+            message.appendMarkdown('returns the integer part.\n', 'alpha');
+
+            hover = new Hover(message);
+        }
+        else if (word === 'exp') {
+            message.appendCodeblock(`function ${word}(x: number) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of type number and\n', 'alpha');
+            message.appendMarkdown('returns the exponent of e to the power of x.\n', 'alpha');
+
+            hover = new Hover(message);
+        }
+        else if (word === 'ceil') {
+            message.appendCodeblock(`function ${word}(x: number) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of type number and\n', 'alpha');
+            message.appendMarkdown('returns the closest integer that is greater than x.\n', 'alpha');
+
+            hover = new Hover(message);
+        }
+        else if (word === 'floor') {
+            message.appendCodeblock(`function ${word}(x: number) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of type number and\n', 'alpha');
+            message.appendMarkdown('returns the closest integer that is less than x.\n', 'alpha');
+
+            hover = new Hover(message);
+        }
+        else if (word === 'log') {
+            message.appendCodeblock(`function ${word}(x: number) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of type number and\n', 'alpha');
+            message.appendMarkdown('returns the natural logarithm of x (base e).\n', 'alpha');
+
+            hover = new Hover(message);
+        }
 
 
         return Promise.resolve(hover);

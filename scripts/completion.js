@@ -73,6 +73,12 @@ class AlphaCompletionItemProvider {
         completionItems.push(makeItem('objectmembrekeys', vscode.CompletionItemKind.Function, true));
         completionItems.push(makeItem('objectcontains', vscode.CompletionItemKind.Function, true));
         completionItems.push(makeItem('tostring', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('abs', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('int', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('exp', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('ceil', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('floor', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('log', vscode.CompletionItemKind.Function, true));
 
         return Promise.resolve(completionItems);
     }
