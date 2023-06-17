@@ -1,3 +1,6 @@
+## 5.2.20
+    update foreach snippet
+
 ## 5.2.19
     Allow variables as tables in foreach (syntax: for (var in table) stmt)
 
