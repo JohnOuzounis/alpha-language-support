@@ -155,6 +155,14 @@ class AlphaHoverProvider {
 
             hover = new Hover(message);
         }
+        else if (word === 'wait') {
+            message.appendCodeblock(`function ${word}(seconds: number) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of type number and\n', 'alpha');
+            message.appendMarkdown('suspends the execution of the program for the specified number of seconds.\n', 'alpha');
+            message.appendMarkdown('The parameter should be a positive number ( >=0 ).\n', 'alpha');
+
+            hover = new Hover(message);
+        }
 
 
         return Promise.resolve(hover);

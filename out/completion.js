@@ -73,6 +73,7 @@ class AlphaCompletionItemProvider {
         completionItems.push(makeItem('ceil', vscode.CompletionItemKind.Function, true));
         completionItems.push(makeItem('floor', vscode.CompletionItemKind.Function, true));
         completionItems.push(makeItem('log', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('wait', vscode.CompletionItemKind.Function, true));
         return Promise.resolve(completionItems);
     }
 }
