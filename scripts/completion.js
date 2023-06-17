@@ -28,7 +28,7 @@ class AlphaCompletionItemProvider {
                 const keywords = [
                     "if", "else", "for", "while", "return", "function",
                     "and", "or", "not", "true", "false", "nil",
-                    "local", "break", "continue"
+                    "local", "break", "continue", "in"
                 ];
                 return (keywords.includes(identifier));
             }
@@ -36,7 +36,8 @@ class AlphaCompletionItemProvider {
             function isLibFunc(identifier) {
                 const funcs = [
                     "print", "println", "sin", "cos", "sqrt", "typeof", "argument", "strtonum", "input",
-                    "totalarguments", "objecttotalmembers", "objectcopy", "objectmemberkeys"
+                    "totalarguments", "objecttotalmembers", "objectcopy", "objectmemberkeys",
+                    "objectcontains", "tostring", "abs", "int", "log", "exp", "ceil", "floor", "wait"
                 ];
 
                 return (funcs.includes(identifier));

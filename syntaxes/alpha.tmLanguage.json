@@ -61,7 +61,7 @@
 				},
 				{
 					"name": "keyword",
-					"match": "\\b(function|local)\\b"
+					"match": "\\b(function|local|in)\\b"
 				},
 				{
 					"name": "keyword.operator",

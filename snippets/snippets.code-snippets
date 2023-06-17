@@ -27,6 +27,14 @@
         ],
         "description": "for loop snippet"
     },
+    "foreach loop snippet": {
+        "scope": "alpha",
+        "prefix": "foreach",
+        "body": [
+            "for (${1:var} in [${2:}]) {\n\t${3:/* code */}\n}"
+        ],
+        "description": "foreach loop snippet"
+    },
     "for keyword snippet": {
         "scope": "alpha",
         "prefix": "for",
@@ -128,5 +136,11 @@
         "prefix": "nil",
         "body": "nil",
         "description": "nil keyword snippet"
+    },
+    "in keyword snippet": {
+        "scope": "alpha",
+        "prefix": "in",
+        "body": "in",
+        "description": "in keyword snippet"
     }
 }
