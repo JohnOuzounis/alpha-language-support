@@ -31,7 +31,7 @@
         "scope": "alpha",
         "prefix": "foreach",
         "body": [
-            "for (${1:var} in [${2:}]) {\n\t${3:/* code */}\n}"
+            "for (${1:var} in ${2:[]}) {\n\t${3:/* code */}\n}"
         ],
         "description": "foreach loop snippet"
     },
