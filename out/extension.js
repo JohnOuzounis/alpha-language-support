@@ -42,7 +42,7 @@ function activate(context) {
         if (run) {
             const terminal = vscode.window.activeTerminal || vscode.window.createTerminal();
             terminal.show();
-            terminal.sendText(`& '${exe}' '${args}'`);
+            terminal.sendText(`& '${exe}' ${args}`);
         }
         else {
             child_process.execFile(`${exe}`, args, (error, stdout, stderr) => {
@@ -70,7 +70,7 @@ function activate(context) {
             exec(parserPath, [`${activeFilePath}`], false);
         }
     }
-    function compileAndRunVM() {
+    function compileAndRunVM(args) {
         const activeEditor = vscode.window.activeTextEditor;
         if (activeEditor) {
             const activeFilePath = activeEditor.document.uri.fsPath;
@@ -79,15 +79,24 @@ function activate(context) {
             const binFolderUri = vscode.Uri.joinPath(context.extensionUri, getBinPath());
             const compilerPath = vscode.Uri.joinPath(binFolderUri, getCompilerPath()).fsPath;
             const vmPath = vscode.Uri.joinPath(binFolderUri, getVmPath()).fsPath;
+            let wno = "";
+            if (typeof args !== undefined) {
+                for (let key in args) {
+                    if (args[key] === "-Wno") {
+                        wno = "-Wno";
+                        break;
+                    }
+                }
+            }
             exec(compilerPath, [`${activeFilePath}`], false);
-            exec(vmPath, [`${activeFileName}.abc`], true);
+            exec(vmPath, [`'${activeFileName}.abc' ${wno}`], true);
         }
     }
     let disposableParseCommand = vscode.commands.registerCommand('extension.parseGrammar', () => {
         parse();
     });
-    let disposableRunCommand = vscode.commands.registerCommand('extension.compileAndRunVM', () => {
-        compileAndRunVM();
+    let disposableRunCommand = vscode.commands.registerCommand('extension.compileAndRunVM', (args) => {
+        compileAndRunVM(args);
     });
     let disposableCompletion = vscode.languages.registerCompletionItemProvider('alpha', new Completion(), '.');
     let disposableHover = vscode.languages.registerHoverProvider('alpha', new AlphaHover());

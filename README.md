@@ -40,6 +40,18 @@
     The vm runs on a terminal (tested on powershell) and the output is displayed there.
 ![Compile Example](images/output.png)
 
+    You can also run an alpha script using F5, to do that
+    1) open .vscode folder (create one if it doen't exist)
+    2) create a launch.json
+    3) in the inputs field add the command: extension.compileAndRunVM
+    4) in the configurations add a launch request
+
+    Your launch.json should look like this.
+![Compile Example](images/launchjson.png)
+
+    You can suppress runtime warnings by adding a -Wno argument.
+![Compile Example](images/launchjson2.png)
+
 
 ## View Parse Output
 
