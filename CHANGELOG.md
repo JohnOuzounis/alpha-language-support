@@ -1,3 +1,6 @@
+## 5.2.12
+    Added conditional operator (syntax:  ((condition) ? value1 : value2)  )
+
 ## 5.2.20
     update foreach snippet
 
