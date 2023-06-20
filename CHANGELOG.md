@@ -1,3 +1,6 @@
+## 5.2.23
+    Fixed bug with nested while loops
+
 ## 5.2.22
     Fixed bug with nested loops and break/continue statements
 
