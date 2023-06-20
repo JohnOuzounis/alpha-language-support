@@ -1,4 +1,7 @@
-## 5.2.12
+## 5.2.22
+    Fixed bug with nested loops and break/continue statements
+
+## 5.2.21
     Added conditional operator (syntax:  ((condition) ? value1 : value2)  )
 
 ## 5.2.20
