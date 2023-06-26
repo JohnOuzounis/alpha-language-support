@@ -1,3 +1,6 @@
+## 5.2.25
+    Fixed bug with function redeclaration
+
 ## 5.2.24
     Added new library function: assert
 
