@@ -1,3 +1,6 @@
+## 5.2.24
+    Added new library function: assert
+
 ## 5.2.23
     Fixed bug with nested while loops
 

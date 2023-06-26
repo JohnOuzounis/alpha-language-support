@@ -37,7 +37,7 @@ class AlphaCompletionItemProvider {
                 const funcs = [
                     "print", "println", "sin", "cos", "sqrt", "typeof", "argument", "strtonum", "input",
                     "totalarguments", "objecttotalmembers", "objectcopy", "objectmemberkeys",
-                    "objectcontains", "tostring", "abs", "int", "log", "exp", "ceil", "floor", "wait"
+                    "objectcontains", "tostring", "abs", "int", "log", "exp", "ceil", "floor", "wait", "assert"
                 ];
 
                 return (funcs.includes(identifier));
@@ -81,6 +81,7 @@ class AlphaCompletionItemProvider {
         completionItems.push(makeItem('floor', vscode.CompletionItemKind.Function, true));
         completionItems.push(makeItem('log', vscode.CompletionItemKind.Function, true));
         completionItems.push(makeItem('wait', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('assert', vscode.CompletionItemKind.Function, true));
 
         return Promise.resolve(completionItems);
     }

@@ -141,6 +141,13 @@ class AlphaHoverProvider {
             message.appendMarkdown('The parameter should be a positive number ( >=0 ).\n', 'alpha');
             hover = new Hover(message);
         }
+        else if (word === 'assert') {
+            message.appendCodeblock(`function ${word}(condition: any) {\n\t/* code */\n}\n`, 'alpha');
+            message.appendMarkdown('This function takes an argument of any type and\n', 'alpha');
+            message.appendMarkdown('converts it to boolean. If the condition evaluates to false\n', 'alpha');
+            message.appendMarkdown('a runtime error occurs.\n', 'alpha');
+            hover = new Hover(message);
+        }
         return Promise.resolve(hover);
     }
 }
