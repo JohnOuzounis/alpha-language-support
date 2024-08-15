@@ -37,6 +37,8 @@ To compile and run an alpha script,
 1. open the command palette with Ctrl+Shift+P
 2. search Alpha Compile and Run VM
 
+> Tested on powershell terminal
+
 ![Compile Example](images/palette.png)
 
 This will compile the active alpha file
