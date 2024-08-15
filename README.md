@@ -147,7 +147,7 @@ table("hello"); // prints hello
 Using the '..' operator you can pass the table as the first argument in a function call
 
 ```javascript
-table = [{"foo":( (< this >) => {print(this.x);} )}, {"x":10}];
+table = [{"foo":( ({ this }) => {print(this.x);} )}, {"x":10}];
 table..foo(); // prints 10
 ```
 
