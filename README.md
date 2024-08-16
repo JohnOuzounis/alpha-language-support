@@ -58,13 +58,54 @@ You can also run an alpha script using F5, to do that
 3. in the inputs field add the command: extension.compileAndRunVM
 4. in the configurations add a launch request
 
-Your launch.json should look like this.
+Your launch.json should look like this:
 
-![Compile Example](images/launchjson.png)
+```javascript
+{
+   "version": "0.2.0",
+   "inputs": [
+      {
+         "id": "alpha",
+         "type": "command",
+         "command": "extension.compileAndRunVM"
+      }
+   ],
+   "configurations": [
+      {
+         "name": "Launch",
+         "type": "node",
+         "request": "launch",
+         "program": "${input:alpha}"
+      }
+   ]
+}
+```
 
-You can suppress runtime warnings by adding a -Wno argument.
+You can suppress runtime warnings by adding a -Wno argument:
 
-![Compile Example](images/launchjson2.png)
+```javascript
+{
+   "version": "0.2.0",
+   "inputs": [
+      {
+         "id": "alpha",
+         "type": "command",
+         "command": "extension.compileAndRunVM",
+         "args": {
+            "arg": "-Wno"
+         }
+      }
+   ],
+   "configurations": [
+      {
+         "name": "Launch",
+         "type": "node",
+         "request": "launch",
+         "program": "${input:alpha}"
+      }
+   ]
+}
+```
 
 ## View Parse Output
 
@@ -79,44 +120,44 @@ go to View -> Output (or Ctrl+Shift+U) and select the Alpha panel
 
 A variable in alpha can be one of the following types:
 
-- string
-- number
-- boolean
-- nil
-- table
-- function
+- [string](#string)
+- [number](#number)
+- [boolean](#boolean)
+- [nil](#nil)
+- [table](#table)
+- [function](#function)
 - library function
-- undefined
+- [undefined](#undefined)
 
-#### String
+### String
 
 ```javascript
 var = "myvar";
 print(typeof(var)); // prints string
 ```
 
-#### Number
+### Number
 
 ```javascript
 var = 10.2;
 print(typeof(var)); // prints number
 ```
 
-#### Boolean
+### Boolean
 
 ```javascript
 var = true;
 print(typeof(var)); // prints boolean
 ```
 
-#### Nil
+### Nil
 
 ```javascript
 var = nil;
 print(typeof(var)); // prints nil
 ```
 
-#### Table
+### Table
 
 In alpha you can define tables by index or key-value pairs.
 
@@ -153,7 +194,7 @@ table = [{"foo":( ({ this }) => {print(this.x);} )}, {"x":10}];
 table..foo(); // prints 10
 ```
 
-#### Function
+### Function
 
 ```javascript
 var = () => {};
@@ -189,7 +230,7 @@ In alpha a function can be called in three ways:
    func("hello"); // prints hello
    ```
 
-#### Undefined
+### Undefined
 
 ```javascript
 var;
