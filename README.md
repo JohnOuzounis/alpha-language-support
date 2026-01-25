@@ -37,7 +37,7 @@ To compile and run an alpha script,
 1. open the command palette with Ctrl+Shift+P
 2. search Alpha Compile and Run VM
 
-> Tested on powershell terminal
+> Tested on bash terminal
 
 ![Compile Example](images/palette.png)
 
@@ -128,6 +128,7 @@ A variable in alpha can be one of the following types:
 - [function](#function)
 - library function
 - [undefined](#undefined)
+- [import](#import)
 
 ### String
 
@@ -169,22 +170,22 @@ print(typeof(var)); // prints table
 - Indexed: can only be accessed using the [] operator
 
 ```javascript
-table = [20.3, "string", true, print];
+table = [20.3, 'string', true, print];
 print(table[1]); // prints string
 ```
 
 - Object: can be accessed using the [] operator and . operator if the key is of type string.
 
 ```javascript
-table = [{ key: 10 }, { 10: "value" }];
-print(table[10], " ", table.key); // prints value 10
+table = [{ key: 10 }, { 10: 'value' }];
+print(table[10], ' ', table.key); // prints value 10
 ```
 
 Objects with the key "()" can be called as a function
 
 ```javascript
-table = [{ "()": print }];
-table("hello"); // prints hello
+table = [{ '()': print }];
+table('hello'); // prints hello
 ```
 
 Using the '..' operator you can pass the table as the first argument in a function call
@@ -211,28 +212,68 @@ In alpha a function can be called in three ways:
 
 1. normal call
 
-   ```javascript
-   function foo() {}
-   foo();
-   ```
+    ```javascript
+    function foo() {}
+    foo();
+    ```
 
 2. functor
 
-   ```javascript
-   table = [{ "()": print }];
-   table("hello"); // prints hello
-   ```
+    ```javascript
+    table = [{ '()': print }];
+    table('hello'); // prints hello
+    ```
 
 3. string call
 
-   ```javascript
-   func = "print";
-   func("hello"); // prints hello
-   ```
+    ```javascript
+    func = 'print';
+    func('hello'); // prints hello
+    ```
 
 ### Undefined
 
 ```javascript
 var;
 print(typeof(var)); // prints undefined
+```
+
+### import
+
+You can import modules like so:
+
+```javascript
+/* module.al */
+
+function test() {
+    println('This is a module test');
+}
+
+/* main.al */
+import 'module.al';
+test(); // prints This is a module test
+```
+
+By default in a module everything in global scope is exported. If you want to export only certain functions or variables wrap your code in a block.
+
+```javascript
+/* module.al */
+
+// exported by default
+function foo() {
+    println('foo');
+}
+
+{
+    // not in global scope, not exported
+    function bar() {
+        println('bar');
+    }
+}
+
+/* main.al */
+import 'module.al';
+
+foo(); // prints foo
+bar(); // error bar is undefined
 ```

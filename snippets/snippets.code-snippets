@@ -1,146 +1,144 @@
 {
+    "import statement snippet": {
+        "scope": "alpha",
+        "prefix": "import",
+        "body": ["import \"${1:module.al}\";"],
+        "description": "import statement snippet",
+    },
     "if statement snippet": {
         "scope": "alpha",
         "prefix": "if",
-        "body": [
-            "if ( ${1:/* condition */} ) {\n\t${2:/* code */}\n}"
-        ],
-        "description": "if statement snippet"
+        "body": ["if ( ${1:/* condition */} ) {\n\t${2:/* code */}\n}"],
+        "description": "if statement snippet",
     },
     "if keyword snippet": {
         "scope": "alpha",
         "prefix": "if",
         "body": "if",
-        "description": "if keyword snippet"
+        "description": "if keyword snippet",
     },
     "else keyword snippet": {
         "scope": "alpha",
         "prefix": "else",
         "body": "else",
-        "description": "else keyword snippet"
+        "description": "else keyword snippet",
     },
     "for loop snippet": {
         "scope": "alpha",
         "prefix": "for",
         "body": [
-            "for (${1:i} = 0; $1 < ${2:length}; $1++) {\n\t${3:/* code */}\n}"
+            "for (${1:i} = 0; $1 < ${2:length}; $1++) {\n\t${3:/* code */}\n}",
         ],
-        "description": "for loop snippet"
+        "description": "for loop snippet",
     },
     "foreach loop snippet": {
         "scope": "alpha",
         "prefix": "foreach",
-        "body": [
-            "for (${1:var} in ${2:[]}) {\n\t${3:/* code */}\n}"
-        ],
-        "description": "foreach loop snippet"
+        "body": ["for (${1:var} in ${2:[]}) {\n\t${3:/* code */}\n}"],
+        "description": "foreach loop snippet",
     },
     "for keyword snippet": {
         "scope": "alpha",
         "prefix": "for",
         "body": "for",
-        "description": "for keyword snippet"
+        "description": "for keyword snippet",
     },
     "while loop snippet": {
         "scope": "alpha",
         "prefix": "while",
-        "body": [
-            "while (${1:/* condition */}) {\n\t${2:/* code */}\n}"
-        ],
-        "description": "while loop snippet"
+        "body": ["while (${1:/* condition */}) {\n\t${2:/* code */}\n}"],
+        "description": "while loop snippet",
     },
     "while keyword snippet": {
         "scope": "alpha",
         "prefix": "while",
         "body": "while",
-        "description": "while keyword snippet"
+        "description": "while keyword snippet",
     },
     "return statement snippet": {
         "scope": "alpha",
         "prefix": "return",
-        "body": [
-            "return ${1:/* expression */};"
-        ],
-        "description": "return statement snippet"
+        "body": ["return ${1:/* expression */};"],
+        "description": "return statement snippet",
     },
     "return keyword snippet": {
         "scope": "alpha",
         "prefix": "return",
         "body": "return",
-        "description": "return keyword snippet"
+        "description": "return keyword snippet",
     },
     "break statement snippet": {
         "scope": "alpha",
         "prefix": "break",
         "body": "break;\n",
-        "description": "break snippet"
+        "description": "break snippet",
     },
     "continue statement snippet": {
         "scope": "alpha",
         "prefix": "continue",
         "body": "continue;\n",
-        "description": "continue snippet"
+        "description": "continue snippet",
     },
     "function declaration snippet": {
         "scope": "alpha",
         "prefix": "function",
         "body": [
-            "function ${1:foo}(${2:/* formal args */}) {\n\t${3:/* code */}\n}"
+            "function ${1:foo}(${2:/* formal args */}) {\n\t${3:/* code */}\n}",
         ],
-        "description": "function declaration snippet"
+        "description": "function declaration snippet",
     },
     "function keyword snippet": {
         "scope": "alpha",
         "prefix": "function",
         "body": "function",
-        "description": "function keyword snippet"
+        "description": "function keyword snippet",
     },
     "local keyword snippet": {
         "scope": "alpha",
         "prefix": "local",
         "body": "local",
-        "description": "local keyword snippet"
+        "description": "local keyword snippet",
     },
     "and keyword snippet": {
         "scope": "alpha",
         "prefix": "and",
         "body": "and",
-        "description": "and keyword snippet"
+        "description": "and keyword snippet",
     },
     "or keyword snippet": {
         "scope": "alpha",
         "prefix": "or",
         "body": "or",
-        "description": "or keyword snippet"
+        "description": "or keyword snippet",
     },
     "not keyword snippet": {
         "scope": "alpha",
         "prefix": "not",
         "body": "not",
-        "description": "not keyword snippet"
+        "description": "not keyword snippet",
     },
     "true keyword snippet": {
         "scope": "alpha",
         "prefix": "true",
         "body": "true",
-        "description": "true keyword snippet"
+        "description": "true keyword snippet",
     },
     "false keyword snippet": {
         "scope": "alpha",
         "prefix": "false",
         "body": "false",
-        "description": "false keyword snippet"
+        "description": "false keyword snippet",
     },
     "nil keyword snippet": {
         "scope": "alpha",
         "prefix": "nil",
         "body": "nil",
-        "description": "nil keyword snippet"
+        "description": "nil keyword snippet",
     },
     "in keyword snippet": {
         "scope": "alpha",
         "prefix": "in",
         "body": "in",
-        "description": "in keyword snippet"
-    }
+        "description": "in keyword snippet",
+    },
 }

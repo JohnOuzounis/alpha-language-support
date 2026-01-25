@@ -1,3 +1,7 @@
+## 5.3.0
+
+Added import statements
+
 ## 5.2.26
 
 Fixed conditional expression and lambda syntax
