@@ -1,3 +1,7 @@
+## 5.3.2
+
+Fixed imports and error messages
+
 ## 5.3.1
 
 Fixed import relative paths
