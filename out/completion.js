@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const vscode = require('vscode');
 class AlphaCompletionItemProvider {
     provideCompletionItems(document, position, token) {
@@ -6,7 +6,8 @@ class AlphaCompletionItemProvider {
         function makeItem(name, type, detailed) {
             var item = new vscode.CompletionItem(name, type);
             item.insertText = name;
-            if (detailed) item.detail = `Library function ${name}`;
+            if (detailed)
+                item.detail = `Library function ${name}`;
             return item;
         }
         (() => {
@@ -78,115 +79,44 @@ class AlphaCompletionItemProvider {
             let match;
             while ((match = tokenRegex.exec(document.getText()))) {
                 const identifier = match[0];
-                const tokenType = Object.keys(match.groups).find(
-                    groupName => match.groups[groupName] !== undefined,
-                );
-                if (tokenType === 'COMMENTSTART') commented++;
-                if (tokenType === 'COMMENTEND') commented--;
-                if (!(tokenType === 'IDENTIFIER') || commented > 0) continue;
-                const existingItem = completionItems.find(
-                    item => item.label === identifier,
-                );
-                if (
-                    !existingItem &&
+                const tokenType = Object.keys(match.groups).find(groupName => match.groups[groupName] !== undefined);
+                if (tokenType === 'COMMENTSTART')
+                    commented++;
+                if (tokenType === 'COMMENTEND')
+                    commented--;
+                if (!(tokenType === 'IDENTIFIER') || commented > 0)
+                    continue;
+                const existingItem = completionItems.find(item => item.label === identifier);
+                if (!existingItem &&
                     !isKeyword(identifier) &&
-                    !isLibFunc(identifier)
-                ) {
-                    completionItems.push(
-                        makeItem(
-                            identifier,
-                            vscode.CompletionItemKind.Variable,
-                            false,
-                        ),
-                    );
+                    !isLibFunc(identifier)) {
+                    completionItems.push(makeItem(identifier, vscode.CompletionItemKind.Variable, false));
                 }
             }
         })();
-        completionItems.push(
-            makeItem('print', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('println', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('sin', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('cos', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('sqrt', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('typeof', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem(
-                'totalarguments',
-                vscode.CompletionItemKind.Function,
-                true,
-            ),
-        );
-        completionItems.push(
-            makeItem('argument', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('strtonum', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('input', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem(
-                'objecttotalmembers',
-                vscode.CompletionItemKind.Function,
-                true,
-            ),
-        );
-        completionItems.push(
-            makeItem('objectcopy', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem(
-                'objectmemberkeys',
-                vscode.CompletionItemKind.Function,
-                true,
-            ),
-        );
-        completionItems.push(
-            makeItem(
-                'objectcontains',
-                vscode.CompletionItemKind.Function,
-                true,
-            ),
-        );
-        completionItems.push(
-            makeItem('tostring', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('abs', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('int', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('exp', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('ceil', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('floor', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('log', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('wait', vscode.CompletionItemKind.Function, true),
-        );
-        completionItems.push(
-            makeItem('assert', vscode.CompletionItemKind.Function, true),
-        );
+        completionItems.push(makeItem('print', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('println', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('sin', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('cos', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('sqrt', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('typeof', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('totalarguments', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('argument', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('strtonum', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('input', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('objecttotalmembers', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('objectcopy', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('objectmemberkeys', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('objectcontains', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('tostring', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('abs', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('int', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('exp', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('ceil', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('floor', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('log', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('wait', vscode.CompletionItemKind.Function, true));
+        completionItems.push(makeItem('assert', vscode.CompletionItemKind.Function, true));
         return Promise.resolve(completionItems);
     }
 }

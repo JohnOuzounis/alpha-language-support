@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 const path = require('path');
-const child_process = require('child_process');
+const { spawn } = require('child_process');
 const Completion = require('./completion.js');
 const AlphaHover = require('./hovers.js');
 
@@ -31,29 +31,36 @@ function activate(context) {
         else throw Error('Unsupported platform');
     }
 
-    function exec(exe, args, run) {
-        if (run) {
-            const terminal =
-                vscode.window.activeTerminal || vscode.window.createTerminal();
-            terminal.show();
-            const cmd = `"${exe}" ${args.join(' ')}`;
-            terminal.sendText(cmd);
-        } else {
-            child_process.execFile(`${exe}`, args, (error, stdout, stderr) => {
-                if (error) {
-                    outputChannel.appendLine(stderr);
-                    throw error;
-                }
-                if (stderr) {
-                    outputChannel.appendLine(stderr);
-                    return;
-                }
-                if (stdout) {
-                    outputChannel.appendLine(stdout);
-                    return;
-                }
+    async function exec(exe, args, runInTerminal = false) {
+        return new Promise((resolve, reject) => {
+            if (runInTerminal) {
+                const terminal =
+                    vscode.window.activeTerminal ||
+                    vscode.window.createTerminal();
+                terminal.show();
+
+                const cmd = `"${exe}" ${args.map(a => `"${a}"`).join(' ')}`;
+                terminal.sendText(cmd);
+
+                resolve();
+                return;
+            }
+
+            const proc = spawn(exe, args, { shell: false });
+
+            proc.stdout.on('data', data =>
+                outputChannel.appendLine(data.toString()),
+            );
+            proc.stderr.on('data', data =>
+                outputChannel.appendLine(data.toString()),
+            );
+
+            proc.on('error', err => reject(err));
+            proc.on('close', code => {
+                if (code === 0) resolve();
+                else reject(new Error(`Process exited with code ${code}`));
             });
-        }
+        });
     }
 
     function parse() {
@@ -73,7 +80,7 @@ function activate(context) {
         }
     }
 
-    function compileAndRunVM(args) {
+    async function compileAndRunVM(args) {
         const activeEditor = vscode.window.activeTextEditor;
         if (activeEditor) {
             const activeFilePath = activeEditor.document.uri.fsPath;
@@ -105,8 +112,15 @@ function activate(context) {
                 }
             }
 
-            exec(compilerPath, [`${activeFilePath}`], true);
-            exec(vmPath, [`'${activeFileName}.abc' ${wno}`], true);
+            outputChannel.show(true);
+            outputChannel.clear();
+
+            await exec(compilerPath, [`${activeFilePath}`], false);
+            await exec(
+                vmPath,
+                [`${activeFileName}.abc`, `${wno}`].filter(Boolean),
+                false,
+            );
         }
     }
 

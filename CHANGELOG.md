@@ -1,3 +1,7 @@
+## 5.3.1
+
+Fixed import relative paths
+
 ## 5.3.0
 
 Added import statements
